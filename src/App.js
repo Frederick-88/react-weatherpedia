@@ -22,8 +22,8 @@ function App() {
 
   return (
     <div>
-      <Rainy />
-      {/* <Sunny /> */}
+      {/* <Rainy /> */}
+      <Sunny />
       {/* <Storm /> */}
       {/* <Windy /> */}
       {/* <Cloudy /> */}
