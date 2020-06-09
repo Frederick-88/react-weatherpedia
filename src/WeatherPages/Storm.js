@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import rainy from "../assets/rainyfix.gif";
+import storm from "../assets/stormfix.gif";
 import logo from "../assets/logo.png";
 import "../style.css";
 
-function Rainy() {
+function Storm() {
   const [dataWeather, setDataWeather] = useState("");
   useEffect(() => {
     axios
@@ -27,7 +27,7 @@ function Rainy() {
   };
 
   return (
-    <div className="rainy-bg">
+    <div className="storm-bg">
       <div className="text-center">
         <img src={logo} style={{ width: "15rem", margin: "1rem" }} alt="..." />
         <hr className="hr-navbar mt-0" />
@@ -35,7 +35,7 @@ function Rainy() {
       <div className="container">
         <div className="row mt-4">
           <div className="col-md-5 mb-4">
-            <div className="w-100 rounded-circle " style={picture(rainy)} />
+            <div className="w-100 rounded-circle " style={picture(storm)} />
           </div>
 
           <div className="col-md-7 text-white text-center align-self-center">
@@ -44,8 +44,8 @@ function Rainy() {
               <h3 className="my-0">Batam, Indonesia</h3>
             </div>
             <h6 className="celcius-txt my-0">18°C</h6>
-            <h3>RAINY</h3>
-            <i className="fas fa-cloud-showers-heavy fa-4x mb-4" />
+            <h3>STORM</h3>
+            <i className="fas fa-bolt fa-4x mb-4" />
             <p>Last Update: 09/06/2020, 14:59</p>
           </div>
         </div>
@@ -87,7 +87,7 @@ function Rainy() {
             />
             <div class="input-group-append">
               <button
-                class="btn btn-info px-4"
+                class="btn btn-secondary px-4"
                 type="button"
                 id="button-addon2"
               >
@@ -127,4 +127,4 @@ function Rainy() {
   );
 }
 
-export default Rainy;
+export default Storm;
