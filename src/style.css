@@ -1,0 +1,25 @@
+body {
+  font-family: "Montserrat", sans-serif !important;
+}
+.celcius-txt {
+  font-size: 8rem;
+}
+.hr-navbar {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.icon-fx {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+.main-bg {
+  background-image: linear-gradient(#0c5563, #4797a7);
+}
+.vertical-line {
+  border-left: 3px solid white;
+  height: 130px;
+}
+.gif-fx {
+  height: 5rem;
+}
