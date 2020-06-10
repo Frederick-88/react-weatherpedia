@@ -152,7 +152,7 @@ function Cloudy(props) {
           >
             <i class="fab fa-linkedin" />
           </a>
-          <p className="text-white mb-0 mt-2">© 2020 WeatherPedia Batam</p>
+          <p className="text-white mb-0 mt-2">© 2020 Weatherpedia Batam</p>
         </div>
       </div>
     </div>
