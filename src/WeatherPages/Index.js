@@ -20,7 +20,6 @@ function Index() {
           `http://api.weatherstack.com/current?access_key=1e67d54abd920dccb5d3d34c733c3c3b&query=${dataInputCity},${dataInputCountry}`
         )
         .then((response) => {
-          console.log(response.data);
           setDataLocationWeather(response.data.location);
           setDataCurrentWeather(response.data.current);
         });
@@ -30,7 +29,6 @@ function Index() {
           `http://api.weatherstack.com/current?access_key=1e67d54abd920dccb5d3d34c733c3c3b&query=Batam,Indonesia`
         )
         .then((response) => {
-          console.log(response.data);
           setDataLocationWeather(response.data.location);
           setDataCurrentWeather(response.data.current);
         });
@@ -41,12 +39,10 @@ function Index() {
 
   const getDataCity = (data) => {
     setDataInputCity(data);
-    console.log(data);
   };
 
   const getDataCountry = (data) => {
     setDataInputCountry(data);
-    console.log(data);
   };
 
   const showWeather = () => {
