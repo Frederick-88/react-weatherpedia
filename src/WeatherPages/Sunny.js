@@ -1,22 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+
 import sunny from "../assets/sunnyfix.gif";
 import logo from "../assets/logo.png";
 import "../style.css";
 
-function Sunny() {
-  const [dataWeather, setDataWeather] = useState("");
-  useEffect(() => {
-    axios
-      .get(
-        "https://api.weatherbit.io/v2.0/current?country=Indonesia,NC&key=f4f84825d6ef4021892c477a6fca9f58"
-      )
-      .then((response) => {
-        console.log(response.data);
-        setDataWeather(response.data);
-      });
-  }, []);
-
+function Sunny(props) {
   const picture = (image) => {
     return {
       backgroundImage: `url(${image})`,
@@ -40,44 +28,55 @@ function Sunny() {
 
           <div className="col-md-7 text-dark text-center align-self-center">
             <div className="d-flex d-row justify-content-center">
-              <i class="fas fa-map-marker-alt icon-fx" />
-              <h3 className="my-0">Batam, Indonesia</h3>
+              <i className="fas fa-map-marker-alt icon-fx" />
+              <h3 className="my-0">
+                {props.dataLocationWeather.name},
+                {props.dataLocationWeather.country}
+              </h3>
             </div>
-            <h6 className="celcius-txt my-0">18°C</h6>
+            <h6 className="celcius-txt my-0">
+              {props.dataCurrentWeather.temperature}°C
+            </h6>
             <h3>SUNNY</h3>
             <i className="fas fa-sun fa-4x mb-4" />
-            <p>Last Update: 09/06/2020, 14:59</p>
+            <p>Last Update: {props.dataLocationWeather.localtime}</p>
           </div>
         </div>
 
         <div className="row text-center mt-4 text-dark">
           <div className="col-md-4">
-            <p className="display-4 my-0">70%</p>
+            <p className="display-4 my-0">
+              {props.dataCurrentWeather.humidity}%
+            </p>
             <div className="d-flex d-row justify-content-center">
               <h3>HUMIDITY</h3>
-              <i class="fas fa-tint icon-fx2" />
+              <i className="fas fa-tint icon-fx2" />
             </div>
           </div>
           <div className="vertical-line" />
           <div className="col-md-3">
-            <p className="display-4 my-0">11km</p>
+            <p className="display-4 my-0">
+              {props.dataCurrentWeather.visibility}km
+            </p>
             <div className="d-flex d-row justify-content-center">
               <h3>VISIBILITY</h3>
-              <i class="far fa-eye icon-fx2" />
+              <i className="far fa-eye icon-fx2" />
             </div>
           </div>
           <div className="vertical-line" />
           <div className="col-md-4">
-            <p className="display-4 my-0">10km/h</p>
+            <p className="display-4 my-0">
+              {props.dataCurrentWeather.wind_speed}km/h
+            </p>
             <div className="d-flex d-row justify-content-center">
               <h3>WIND SPEED</h3>
-              <i class="fas fa-wind icon-fx2" />
+              <i className="fas fa-wind icon-fx2" />
             </div>
           </div>
         </div>
 
         <div className="mt-4">
-          <div class="input-group mb-3">
+          <div className="input-group mb-3">
             <input
               type="text"
               className="form-control py-4"
@@ -85,13 +84,13 @@ function Sunny() {
               aria-label="Recipient's username"
               aria-describedby="button-addon2"
             />
-            <div class="input-group-append">
+            <div className="input-group-append">
               <button
-                class="btn btn-warning px-4"
+                className="btn btn-warning px-4"
                 type="button"
                 id="button-addon2"
               >
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
               </button>
             </div>
           </div>
@@ -102,23 +101,23 @@ function Sunny() {
           <div className="d-flex d-row pb-4">
             <button className="btn btn-warning d-flex d-row py-2 mx-2">
               <h3 className="my-0">SUNNY</h3>
-              <i class="fas fa-sun icon-fx2" />
+              <i className="fas fa-sun icon-fx2" />
             </button>
             <button className="btn btn-info d-flex d-row py-2 mx-2">
               <h3 className="my-0">RAINY</h3>
-              <i class="fas fa-cloud-showers-heavy icon-fx2" />
+              <i className="fas fa-cloud-showers-heavy icon-fx2" />
             </button>
             <button className="btn btn-secondary d-flex d-row py-2 mx-2">
               <h3 className="my-0">STORM</h3>
-              <i class="fas fa-bolt icon-fx2" />
+              <i className="fas fa-bolt icon-fx2" />
             </button>
             <button className="btn btn-success d-flex d-row py-2 mx-2">
               <h3 className="my-0">WINDY</h3>
-              <i class="fas fa-wind icon-fx2" />
+              <i className="fas fa-wind icon-fx2" />
             </button>
             <button className="btn btn-primary d-flex d-row py-2 mx-2">
               <h3 className="my-0">CLOUDY</h3>
-              <i class="fas fa-cloud icon-fx2" />
+              <i className="fas fa-cloud icon-fx2" />
             </button>
           </div>
         </div>
