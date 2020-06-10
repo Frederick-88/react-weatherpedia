@@ -97,7 +97,7 @@ function Sunny(props) {
           </div>
         </div>
 
-        <div className="mt-4 pb-5">
+        <div className="mt-4">
           <div class="input-group">
             <input
               type="text"
@@ -124,6 +124,35 @@ function Sunny(props) {
               </button>
             </div>
           </div>
+        </div>
+        <div className="text-center">
+          <a class="btn btn-primary home-btn" href="/" role="button">
+            <i class="fas fa-arrow-circle-left mr-3"></i>
+            Back to Home
+          </a>
+        </div>
+      </div>
+      <div className="footer-bg d-flex justify-content-center">
+        <div className="align-self-center text-center">
+          <h4 className="text-white">Check out the Founder!</h4>
+          <a
+            className="icon-fx"
+            href="https://github.com/Frederick-88"
+            target="blank"
+          >
+            <i class="fab fa-github" />
+          </a>
+          <a className="icon-fx" href="https://fdtech.asia/" target="blank">
+            <i class="fab fa-safari" />
+          </a>
+          <a
+            className="icon-fx"
+            href="https://www.linkedin.com/in/chen-frederick-1324301a8/"
+            target="blank"
+          >
+            <i class="fab fa-linkedin" />
+          </a>
+          <p className="text-white mb-0 mt-2">© 2020 WeatherPedia Batam</p>
         </div>
       </div>
     </div>

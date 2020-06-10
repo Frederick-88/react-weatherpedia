@@ -17,6 +17,11 @@ body {
   font-size: 1.75rem;
   margin-left: 0.75rem;
 }
+.home-btn {
+  font-size: 1.5rem !important;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
 .rainy-bg {
   background-image: linear-gradient(#0c5563, #4797a7);
 }
@@ -31,6 +36,20 @@ body {
 }
 .cloudy-bg {
   background-image: linear-gradient(#228cfd, #0e4783);
+}
+.footer-bg {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+.icon-fx i {
+  font-size: 2rem;
+}
+.icon-fx {
+  color: #d3d3d3;
+}
+.icon-fx:hover {
+  color: white;
 }
 .vertical-line {
   border-left: 3px solid white;
