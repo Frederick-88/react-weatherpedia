@@ -10,30 +10,52 @@ import Cloudy from "./Cloudy";
 function Index() {
   const [dataLocationWeather, setDataLocationWeather] = useState({});
   const [dataCurrentWeather, setDataCurrentWeather] = useState({});
-  // const [ComponentDisplay, setComponentDisplay] = useState("");
+  const [dataInputCity, setDataInputCity] = useState("");
+  const [dataInputCountry, setDataInputCountry] = useState("");
 
   useEffect(() => {
-    axios
-      // .get(
-      //   "http://api.openweathermap.org/data/2.5/group?id=1642911,1214520,1642858,1631761&appid=08c63bb12c5a4132f5d570f08f17872d"
-      // )
-      .get(
-        "http://api.weatherstack.com/current?access_key=1e67d54abd920dccb5d3d34c733c3c3b&query=Batam,Indonesia"
-      )
-      .then((response) => {
-        console.log(response.data);
-        setDataLocationWeather(response.data.location);
-        setDataCurrentWeather(response.data.current);
-      });
-  }, []);
+    if (dataInputCity && dataInputCountry) {
+      axios
+        .get(
+          `http://api.weatherstack.com/current?access_key=1e67d54abd920dccb5d3d34c733c3c3b&query=${dataInputCity},${dataInputCountry}`
+        )
+        .then((response) => {
+          console.log(response.data);
+          setDataLocationWeather(response.data.location);
+          setDataCurrentWeather(response.data.current);
+        });
+    } else {
+      axios
+        .get(
+          `http://api.weatherstack.com/current?access_key=1e67d54abd920dccb5d3d34c733c3c3b&query=Batam,Indonesia`
+        )
+        .then((response) => {
+          console.log(response.data);
+          setDataLocationWeather(response.data.location);
+          setDataCurrentWeather(response.data.current);
+        });
+    }
+  }, [dataInputCity, dataInputCountry]);
 
   let weatherCondition = dataCurrentWeather.weather_code;
+
+  const getDataCity = (data) => {
+    setDataInputCity(data);
+    console.log(data);
+  };
+
+  const getDataCountry = (data) => {
+    setDataInputCountry(data);
+    console.log(data);
+  };
 
   const showWeather = () => {
     // mendefine supaya props ini bisa dimasukkan ke dalam component dibawah.
     const props = {
       dataCurrentWeather,
       dataLocationWeather,
+      getDataCity,
+      getDataCountry,
     };
 
     let Weather = <></>;

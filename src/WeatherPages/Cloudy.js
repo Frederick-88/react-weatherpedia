@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import cloud from "../assets/cloudyfix.gif";
 import logo from "../assets/logo.png";
 import "../style.css";
 
 function Cloudy(props) {
+  const [inputCity, setInputCity] = useState("");
+  const [inputCountry, setInputCountry] = useState("");
+
   const picture = (image) => {
     return {
       backgroundImage: `url(${image})`,
@@ -12,6 +15,25 @@ function Cloudy(props) {
       backgroundPosition: "center",
       height: "25rem",
     };
+  };
+
+  const handleChangeCityInput = (event) => {
+    let { value } = event.currentTarget;
+    setInputCity(value);
+  };
+
+  const handleChangeCountryInput = (event) => {
+    let { value } = event.currentTarget;
+    setInputCountry(value);
+  };
+
+  const handleSubmit = () => {
+    if (inputCity && inputCountry) {
+      props.getDataCity(inputCity);
+      props.getDataCountry(inputCountry);
+    } else {
+      window.alert("Please fill city & country form correctly");
+    }
   };
 
   return (
@@ -75,50 +97,32 @@ function Cloudy(props) {
           </div>
         </div>
 
-        <div className="mt-4">
-          <div className="input-group mb-3">
+        <div className="mt-4 pb-5">
+          <div class="input-group">
             <input
               type="text"
-              className="form-control py-4"
-              placeholder="Search the city you want to check about . . ."
-              aria-label="Recipient's username"
-              aria-describedby="button-addon2"
+              class="form-control py-4"
+              placeholder="Search the City you want to check about . . ."
+              onChange={handleChangeCityInput}
+              required
             />
-            <div className="input-group-append">
+            <input
+              type="text"
+              class="form-control py-4"
+              placeholder="Search the Country you want to check about . . ."
+              onChange={handleChangeCountryInput}
+              required
+            />
+            <div class="input-group-prepend">
               <button
                 className="btn btn-primary px-4"
                 type="button"
                 id="button-addon2"
+                onClick={handleSubmit}
               >
                 <i className="fas fa-search"></i>
               </button>
             </div>
-          </div>
-        </div>
-
-        <div className="mt-4">
-          <h2 className="text-white">Check out other cities with weather :</h2>
-          <div className="d-flex d-row pb-4">
-            <button className="btn btn-warning d-flex d-row py-2 mx-2">
-              <h3 className="my-0">SUNNY</h3>
-              <i className="fas fa-sun icon-fx2" />
-            </button>
-            <button className="btn btn-info d-flex d-row py-2 mx-2">
-              <h3 className="my-0">RAINY</h3>
-              <i className="fas fa-cloud-showers-heavy icon-fx2" />
-            </button>
-            <button className="btn btn-secondary d-flex d-row py-2 mx-2">
-              <h3 className="my-0">STORM</h3>
-              <i className="fas fa-bolt icon-fx2" />
-            </button>
-            <button className="btn btn-success d-flex d-row py-2 mx-2">
-              <h3 className="my-0">WINDY</h3>
-              <i className="fas fa-wind icon-fx2" />
-            </button>
-            <button className="btn btn-primary d-flex d-row py-2 mx-2">
-              <h3 className="my-0">CLOUDY</h3>
-              <i className="fas fa-cloud icon-fx2" />
-            </button>
           </div>
         </div>
       </div>
