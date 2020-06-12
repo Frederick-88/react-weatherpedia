@@ -8,34 +8,41 @@ import Windy from "./Windy";
 import Cloudy from "./Cloudy";
 
 function Index() {
-  const [dataLocationWeather, setDataLocationWeather] = useState({});
-  const [dataCurrentWeather, setDataCurrentWeather] = useState({});
+  const [dataWeather, setDataWeather] = useState({});
+  const [dataTemperature, setDataTemperature] = useState({});
+  const [dataVisibility, setDataVisibility] = useState({});
+  const [WindSpeed, setWindSpeed] = useState({});
+  const [CityName, setCityName] = useState({});
+  const [CountryCode, setCountryCode] = useState({});
+
   const [dataInputCity, setDataInputCity] = useState("");
   const [dataInputCountry, setDataInputCountry] = useState("");
 
-  useEffect(() => {
+  useEffect(async () => {
     if (dataInputCity && dataInputCountry) {
-      axios
-        .get(
-          `http://api.weatherstack.com/current?access_key=1e67d54abd920dccb5d3d34c733c3c3b&query=${dataInputCity},${dataInputCountry}`
-        )
-        .then((response) => {
-          setDataLocationWeather(response.data.location);
-          setDataCurrentWeather(response.data.current);
-        });
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${dataInputCity},${dataInputCountry}&units=metric&appid=08c63bb12c5a4132f5d570f08f17872d`
+      );
+      setDataWeather(response.data.weather[0]);
+      setDataTemperature(response.data.main.temp);
+      setWindSpeed(response.data.wind.speed);
+      setDataVisibility(response.data.visibility);
+      setCityName(response.data.name);
+      setCountryCode(response.data.sys.country);
     } else {
-      axios
-        .get(
-          `http://api.weatherstack.com/current?access_key=1e67d54abd920dccb5d3d34c733c3c3b&query=Batam,Indonesia`
-        )
-        .then((response) => {
-          setDataLocationWeather(response.data.location);
-          setDataCurrentWeather(response.data.current);
-        });
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=Singapore,Singapore&units=metric&appid=08c63bb12c5a4132f5d570f08f17872d`
+      );
+      setDataWeather(response.data.weather[0]);
+      setDataTemperature(response.data.main.temp);
+      setWindSpeed(response.data.wind.speed);
+      setDataVisibility(response.data.visibility);
+      setCityName(response.data.name);
+      setCountryCode(response.data.sys.country);
     }
   }, [dataInputCity, dataInputCountry]);
 
-  let weatherCondition = dataCurrentWeather.weather_code;
+  let weatherCondition = dataWeather.id;
 
   const getDataCity = (data) => {
     setDataInputCity(data);
@@ -48,26 +55,30 @@ function Index() {
   const showWeather = () => {
     // mendefine supaya props ini bisa dimasukkan ke dalam component dibawah.
     const props = {
-      dataCurrentWeather,
-      dataLocationWeather,
+      dataWeather,
+      dataTemperature,
+      dataVisibility,
+      WindSpeed,
+      CityName,
+      CountryCode,
       getDataCity,
       getDataCountry,
     };
 
-    let Weather = <></>;
-    if (weatherCondition <= 116) {
-      Weather = <Sunny {...props} />;
-    } else if (weatherCondition <= 263) {
-      Weather = <Windy {...props} />;
-    } else if (weatherCondition <= 293) {
-      Weather = <Cloudy {...props} />;
-    } else if (weatherCondition <= 302) {
-      Weather = <Rainy {...props} />;
-    } else {
-      Weather = <Storm {...props} />;
-    }
+    // let Weather = <></>;
+    // if (weatherCondition <= 804 && weatherCondition >= 800) {
+    //   Weather = <Sunny {...props} />;
+    // } else if (weatherCondition <= 781 && weatherCondition >= 701) {
+    //   Weather = <Windy {...props} />;
+    // } else if (weatherCondition <= 321 && weatherCondition >= 300) {
+    //   Weather = <Cloudy {...props} />;
+    // } else if (weatherCondition <= 531 && weatherCondition >= 500) {
+    //   Weather = <Rainy {...props} />;
+    // } else {
+    //   Weather = <Storm {...props} />;
+    // }
 
-    return Weather;
+    // return Weather;
   };
 
   return <div> {showWeather()}</div>;
