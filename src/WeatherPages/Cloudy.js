@@ -59,7 +59,7 @@ function Cloudy(props) {
 
           <div className="col-md-7 text-white text-center align-self-center">
             <div className="d-flex d-row justify-content-center">
-              <i className="fas fa-map-marker-alt icon-fx" />
+              <i className="fas fa-map-marker-alt fa-2x mr-3" />
               <h3 className="my-0">
                 {props.data.name}, {props.data.sys.country}
               </h3>
