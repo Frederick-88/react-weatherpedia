@@ -8,41 +8,26 @@ import Windy from "./Windy";
 import Cloudy from "./Cloudy";
 
 function Index() {
-  const [dataWeather, setDataWeather] = useState({});
-  const [dataTemperature, setDataTemperature] = useState({});
-  const [dataVisibility, setDataVisibility] = useState({});
-  const [WindSpeed, setWindSpeed] = useState({});
-  const [CityName, setCityName] = useState({});
-  const [CountryCode, setCountryCode] = useState({});
+  const [data, setData] = useState({});
 
   const [dataInputCity, setDataInputCity] = useState("");
   const [dataInputCountry, setDataInputCountry] = useState("");
 
-  useEffect(async () => {
+  useEffect(() => {
+    let city = "Singapore";
+    let country = "Singapore";
     if (dataInputCity && dataInputCountry) {
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${dataInputCity},${dataInputCountry}&units=metric&appid=08c63bb12c5a4132f5d570f08f17872d`
-      );
-      setDataWeather(response.data.weather[0]);
-      setDataTemperature(response.data.main.temp);
-      setWindSpeed(response.data.wind.speed);
-      setDataVisibility(response.data.visibility);
-      setCityName(response.data.name);
-      setCountryCode(response.data.sys.country);
-    } else {
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=Singapore,Singapore&units=metric&appid=08c63bb12c5a4132f5d570f08f17872d`
-      );
-      setDataWeather(response.data.weather[0]);
-      setDataTemperature(response.data.main.temp);
-      setWindSpeed(response.data.wind.speed);
-      setDataVisibility(response.data.visibility);
-      setCityName(response.data.name);
-      setCountryCode(response.data.sys.country);
+      city = dataInputCity;
+      country = dataInputCountry;
     }
+    // to make it goes automatically, rare code writing. go
+    (async () => {
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&appid=08c63bb12c5a4132f5d570f08f17872d`
+      );
+      setData(response.data);
+    })();
   }, [dataInputCity, dataInputCountry]);
-
-  let weatherCondition = dataWeather.id;
 
   const getDataCity = (data) => {
     setDataInputCity(data);
@@ -55,30 +40,29 @@ function Index() {
   const showWeather = () => {
     // mendefine supaya props ini bisa dimasukkan ke dalam component dibawah.
     const props = {
-      dataWeather,
-      dataTemperature,
-      dataVisibility,
-      WindSpeed,
-      CityName,
-      CountryCode,
+      data,
       getDataCity,
       getDataCountry,
     };
 
-    // let Weather = <></>;
-    // if (weatherCondition <= 804 && weatherCondition >= 800) {
-    //   Weather = <Sunny {...props} />;
-    // } else if (weatherCondition <= 781 && weatherCondition >= 701) {
-    //   Weather = <Windy {...props} />;
-    // } else if (weatherCondition <= 321 && weatherCondition >= 300) {
-    //   Weather = <Cloudy {...props} />;
-    // } else if (weatherCondition <= 531 && weatherCondition >= 500) {
-    //   Weather = <Rainy {...props} />;
-    // } else {
-    //   Weather = <Storm {...props} />;
-    // }
+    let Weather = <div>Loading</div>;
 
-    // return Weather;
+    if (data && data.weather && data.weather[0] && data.weather[0].id) {
+      let weatherId = data.weather[0].id;
+      if (weatherId <= 804 && weatherId >= 800) {
+        Weather = <Sunny {...props} />;
+      } else if (weatherId <= 781 && weatherId >= 701) {
+        Weather = <Windy {...props} />;
+      } else if (weatherId <= 321 && weatherId >= 300) {
+        Weather = <Cloudy {...props} />;
+      } else if (weatherId <= 531 && weatherId >= 500) {
+        Weather = <Rainy {...props} />;
+      } else {
+        Weather = <Storm {...props} />;
+      }
+    }
+
+    return Weather;
   };
 
   return <div> {showWeather()}</div>;

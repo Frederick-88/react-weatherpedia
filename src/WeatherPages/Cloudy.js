@@ -1,10 +1,19 @@
 import React, { useState } from "react";
-
 import cloud from "../assets/cloudyfix.gif";
+import moment from "moment";
 import logo from "../assets/logo.png";
 import "../style.css";
 
 function Cloudy(props) {
+  const temperature = Math.ceil(props.data.main.temp);
+
+  let convertDate = moment.unix(props.data.dt);
+  let lastUpdateTime = convertDate.format("dddd, MMMM Do YYYY, h:mm:ss a");
+
+  const description = props.data.weather[0].description.toUpperCase();
+
+  const visibility = props.data.visibility / 1000;
+
   const [inputCity, setInputCity] = useState("");
   const [inputCountry, setInputCountry] = useState("");
 
@@ -52,24 +61,19 @@ function Cloudy(props) {
             <div className="d-flex d-row justify-content-center">
               <i className="fas fa-map-marker-alt icon-fx" />
               <h3 className="my-0">
-                {props.dataLocationWeather.name},{" "}
-                {props.dataLocationWeather.country}
+                {props.data.name}, {props.data.sys.country}
               </h3>
             </div>
-            <h6 className="celcius-txt my-0">
-              {props.dataCurrentWeather.temperature}°C
-            </h6>
-            <h3>CLOUDY</h3>
+            <h6 className="celcius-txt my-0">{temperature}°C</h6>
+            <h4>{description}</h4>
             <i className="fas fa-cloud fa-4x mb-4" />
-            <p>Last Update: {props.dataLocationWeather.localtime}</p>
+            <p>Last Update: {lastUpdateTime}</p>
           </div>
         </div>
 
         <div className="row text-center mt-4 text-white">
           <div className="col-md-4">
-            <p className="display-4 my-0">
-              {props.dataCurrentWeather.humidity}%
-            </p>
+            <p className="display-4 my-0">{props.data.main.humidity}%</p>
             <div className="d-flex d-row justify-content-center">
               <h3>HUMIDITY</h3>
               <i className="fas fa-tint icon-fx2" />
@@ -77,9 +81,7 @@ function Cloudy(props) {
           </div>
           <div className="vertical-line" />
           <div className="col-md-3">
-            <p className="display-4 my-0">
-              {props.dataCurrentWeather.visibility}km
-            </p>
+            <p className="display-4 my-0">{visibility ? visibility : "- "}km</p>
             <div className="d-flex d-row justify-content-center">
               <h3>VISIBILITY</h3>
               <i className="far fa-eye icon-fx2" />
@@ -87,9 +89,7 @@ function Cloudy(props) {
           </div>
           <div className="vertical-line" />
           <div className="col-md-4">
-            <p className="display-4 my-0">
-              {props.dataCurrentWeather.wind_speed}km/h
-            </p>
+            <p className="display-4 my-0">{props.data.wind.speed}km/h</p>
             <div className="d-flex d-row justify-content-center">
               <h3>WIND SPEED</h3>
               <i className="fas fa-wind icon-fx2" />
@@ -98,22 +98,22 @@ function Cloudy(props) {
         </div>
 
         <div className="mt-4">
-          <div class="input-group">
+          <div className="input-group">
             <input
               type="text"
-              class="form-control py-4"
+              className="form-control py-4"
               placeholder="Search the City you want to check about . . ."
               onChange={handleChangeCityInput}
               required
             />
             <input
               type="text"
-              class="form-control py-4"
+              className="form-control py-4"
               placeholder="Search the Country you want to check about . . ."
               onChange={handleChangeCountryInput}
               required
             />
-            <div class="input-group-prepend">
+            <div className="input-group-prepend">
               <button
                 className="btn btn-primary px-4"
                 type="button"
@@ -126,8 +126,8 @@ function Cloudy(props) {
           </div>
         </div>
         <div className="text-center">
-          <a class="btn btn-primary home-btn" href="/" role="button">
-            <i class="fas fa-arrow-circle-left mr-3"></i>
+          <a className="btn btn-primary home-btn" href="/" role="button">
+            <i className="fas fa-arrow-circle-left mr-3"></i>
             Back to Home
           </a>
         </div>
@@ -140,17 +140,17 @@ function Cloudy(props) {
             href="https://github.com/Frederick-88"
             target="blank"
           >
-            <i class="fab fa-github" />
+            <i className="fab fa-github" />
           </a>
           <a className="icon-fx" href="https://fdtech.asia/" target="blank">
-            <i class="fab fa-safari" />
+            <i className="fab fa-safari" />
           </a>
           <a
             className="icon-fx"
             href="https://www.linkedin.com/in/chen-frederick-1324301a8/"
             target="blank"
           >
-            <i class="fab fa-linkedin" />
+            <i className="fab fa-linkedin" />
           </a>
           <p className="text-white mb-0 mt-2">© 2020 Weatherpedia Batam</p>
         </div>
