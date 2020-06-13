@@ -56,5 +56,35 @@ body {
   height: 130px;
 }
 .gif-fx {
-  height: 5rem;
+  height: 25rem;
+  width: 100%;
+}
+.only-desktop {
+  display: block;
+}
+.only-mobile {
+  display: none;
+}
+.horizontal-line {
+  border: 1.5px solid white;
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 576px) {
+  .gif-fx {
+    height: 16rem;
+    width: 75%;
+  }
+  .celcius-txt {
+    font-size: 6.5rem;
+  }
+  .only-desktop {
+    display: none;
+  }
+  .only-mobile {
+    display: block;
+  }
 }

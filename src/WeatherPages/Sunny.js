@@ -22,7 +22,6 @@ function Sunny(props) {
       backgroundImage: `url(${image})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
-      height: "25rem",
     };
   };
 
@@ -53,8 +52,8 @@ function Sunny(props) {
       </div>
       <div className="container">
         <div className="row mt-4">
-          <div className="col-md-5 mb-4">
-            <div className="w-100 rounded-circle " style={picture(sunny)} />
+          <div className="col-md-5 mb-4 d-flex justify-content-center">
+            <div className="rounded-circle gif-fx" style={picture(sunny)} />
           </div>
 
           <div className="col-md-7 text-dark text-center align-self-center">
@@ -79,7 +78,8 @@ function Sunny(props) {
               <i className="fas fa-tint icon-fx2" />
             </div>
           </div>
-          <div className="vertical-line" />
+          <div className="vertical-line only-desktop" />
+          <div className="horizontal-line only-mobile" />
           <div className="col-md-3">
             <p className="display-4 my-0">{visibility ? visibility : "- "}km</p>
             <div className="d-flex d-row justify-content-center">
@@ -87,7 +87,8 @@ function Sunny(props) {
               <i className="far fa-eye icon-fx2" />
             </div>
           </div>
-          <div className="vertical-line" />
+          <div className="vertical-line only-desktop" />
+          <div className="horizontal-line only-mobile" />
           <div className="col-md-4">
             <p className="display-4 my-0">{props.data.wind.speed}km/h</p>
             <div className="d-flex d-row justify-content-center">
@@ -97,7 +98,7 @@ function Sunny(props) {
           </div>
         </div>
 
-        <div className="mt-4">
+        <div className="mt-4 only-desktop">
           <div className="input-group">
             <input
               type="text"
@@ -125,6 +126,36 @@ function Sunny(props) {
             </div>
           </div>
         </div>
+
+        <div className="mt-4 only-mobile">
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control py-4"
+              placeholder="Check City"
+              onChange={handleChangeCityInput}
+              required
+            />
+            <input
+              type="text"
+              className="form-control py-4"
+              placeholder="Check Country"
+              onChange={handleChangeCountryInput}
+              required
+            />
+            <div className="input-group-prepend">
+              <button
+                className="btn btn-warning px-4"
+                type="button"
+                id="button-addon2"
+                onClick={handleSubmit}
+              >
+                <i className="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center">
           <a className="btn btn-primary home-btn" href="/" role="button">
             <i className="fas fa-arrow-circle-left mr-3"></i>

@@ -45,7 +45,7 @@ function Index() {
       getDataCountry,
     };
 
-    let Weather = <div>Loading</div>;
+    let Weather = <div>Loading...</div>;
 
     if (data && data.weather && data.weather[0] && data.weather[0].id) {
       let weatherId = data.weather[0].id;
