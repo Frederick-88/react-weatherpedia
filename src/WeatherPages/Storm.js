@@ -66,7 +66,7 @@ function Storm(props) {
             <h6 className="celcius-txt my-0">{temperature}°C</h6>
             <h4>{description}</h4>
             <i className="fas fa-bolt fa-4x mb-4" />
-            <p>Last Update: {lastUpdateTime}</p>
+            <p>Last Updaate: {lastUpdateTime}</p>
           </div>
         </div>
 
