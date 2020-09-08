@@ -74,7 +74,7 @@ function Storm(props) {
           <div className="col-md-4">
             <p className="display-4 my-0">{props.data.main.humidity}%</p>
             <div className="d-flex d-row justify-content-center">
-              <h3>HUMIDITY</h3>
+              <h3>HUMaIDITY</h3>
               <i className="fas fa-tint icon-fx2" />
             </div>
           </div>
