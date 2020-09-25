@@ -159,7 +159,7 @@ function Storm(props) {
         <div className="text-center">
           <a className="btn btn-primary home-btn" href="/" role="button">
             <i className="fas fa-arrow-circle-left mr-3"></i>
-            Back to Hoaame
+            Back to Hoame
           </a>
         </div>
       </div>
