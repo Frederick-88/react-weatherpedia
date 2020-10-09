@@ -165,7 +165,7 @@ function Storm(props) {
       </div>
       <div className="footer-bg d-flex justify-content-center">
         <div className="align-self-center text-center">
-          <h4 className="text-white">Check out the Founder!</h4>
+          <h4 className="text-white">Check outa the Founder!</h4>
           <a
             className="icon-fx"
             href="https://github.com/Frederick-88"
