@@ -5,8 +5,6 @@ import logo from "../assets/logo.png";
 import "../style.css";
 
 function Rainy(props) {
-  console.log(props);
-
   const temperature = Math.ceil(props.data.main.temp);
 
   let convertDate = moment.unix(props.data.dt);

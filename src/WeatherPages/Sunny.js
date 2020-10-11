@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
-import sunny from "../assets/sunnyfix.gif";
+import sunny from "../assets/image.jpg";
 import logo from "../assets/logo.png";
 import "../style.css";
 

@@ -18,7 +18,12 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then(() => {
-      return fetch(event.request).catch(() => caches.match("offline.html"));
+      return (
+        fetch(event.request)
+          // if there are error while requesting data, chances are the connection was offline.
+          // if connection offline, we show the offline.html
+          .catch(() => caches.match("offline.html"))
+      );
     })
   );
 });
